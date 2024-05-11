@@ -6029,7 +6029,9 @@ static bool task_is_unity_game(struct task_struct *p)
 		rcu_read_lock();
 		for_each_thread(p, t) {
 			/* Check for a UnityMain thread in the thread group */
-			if (!strcmp(t->comm, "UnityMain") || !strcmp(t->comm, "UnityGfxDeviceW")) {
+
+			if (!strcmp(t->comm, "UnityMain")) {
+
 				ret = true;
 				break;
 			}
