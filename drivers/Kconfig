@@ -229,4 +229,6 @@ source "drivers/dts_eagle/Kconfig"
 
 source "../KernelSU/kernel/Kconfig"
 
+source "drivers/energy_model/Kconfig"
+
 endmenu
