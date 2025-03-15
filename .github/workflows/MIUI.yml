@@ -1,4 +1,4 @@
-name: build kernel 
+name: build kernel [MIUI]
 on:
   workflow_dispatch:
 jobs:
@@ -21,8 +21,7 @@ jobs:
 
     - name: Fetch Clang
       run: |  
-            mkdir clang ; cd clang ; wget https://github.com/greenforce-project/greenforce_clang/releases/download/09032025/greenforce-clang-21.0.0git-09032025.tar.gz ; tar -xf * && ls
-#            mkdir clang && curl  https://android.googlesource.com/platform/prebuilts/clang/host/linux-x86/+archive/refs/heads/main/clang-r547379.tar.gz -RLO && tar -C clang/ -xf clang-*.tar.gz
+            mkdir clang && curl  https://android.googlesource.com/platform/prebuilts/clang/host/linux-x86/+archive/refs/heads/main/clang-r547379.tar.gz -RLO && tar -C clang/ -xf clang-*.tar.gz
 
     - name: Fetch Gcc
       run: |
@@ -71,7 +70,7 @@ jobs:
     - name: Upload Kernol 
       uses: actions/upload-artifact@v4
       with:
-        name: GreenForce-MIUI-${{ env.BUILD_TIME }}-signed
+        name: ZenKernoll-MIUI-${{ env.BUILD_TIME }}
         path: AnyKernel3/*
 
 
