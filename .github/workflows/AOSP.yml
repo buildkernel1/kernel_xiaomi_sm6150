@@ -70,7 +70,7 @@ jobs:
     - name: Upload Kernol 
       uses: actions/upload-artifact@v4
       with:
-        name: ZenKernoll-MIUI-${{ env.BUILD_TIME }}
+        name: ZenKernoll-AOSP-${{ env.BUILD_TIME }}
         path: AnyKernel3/*
 
 
