@@ -5713,15 +5713,16 @@ int panel_disp_param_send_lock(struct dsi_panel *panel, int param)
 	}
     
     temp = param & 0x000F0000;
- 	if (temp == DISPPARAM_BC_60HZ) {
- 		pr_info("BC 60hz\n");
- 		rc = dsi_panel_tx_cmd_set(panel, DSI_CMD_SET_DISP_BC_60HZ);
- 	} else if (temp == DISPPARAM_BC_90HZ) {
- 		pr_info("BC 90hz\n");
- 		rc = dsi_panel_tx_cmd_set(panel, DSI_CMD_SET_DISP_BC_90HZ);
- 	} else {
- 	}
- 	
+
+  	if (temp == DISPPARAM_BC_60HZ) {
+  		pr_info("BC 60hz\n");
+  		rc = dsi_panel_tx_cmd_set(panel, DSI_CMD_SET_DISP_BC_60HZ);
+  	} else if (temp == DISPPARAM_BC_90HZ) {
+  		pr_info("BC 90hz\n");
+  		rc = dsi_panel_tx_cmd_set(panel, DSI_CMD_SET_DISP_BC_90HZ);
+  	} 
+  
+
 	temp = param & 0x00F00000;
 	switch (temp) {
 	case DISPPARAM_NORMALMODE1:
@@ -6424,12 +6425,21 @@ int dsi_panel_disable(struct dsi_panel *panel)
 	}
 	
 	if (panel->cur_mode->timing.refresh_rate == 90) {
+<<<<<<< HEAD
  	rc = dsi_panel_tx_cmd_set(panel, DSI_CMD_SET_DISP_BC_90HZ);
  	if (rc)
  		pr_err("[%s] failed to send DSI_CMD_SET_DISP_BC_90HZ cmd, rc=%d\n",
  					panel->name, rc);
  	}
  	
+=======
+  	rc = dsi_panel_tx_cmd_set(panel, DSI_CMD_SET_DISP_BC_90HZ);
+  	if (rc)
+  		pr_err("[%s] failed to send DSI_CMD_SET_DISP_BC_90HZ cmd, rc=%d\n",
+  					panel->name, rc);
+  	}
+  	
+>>>>>>> a512664ad6e3 (Introduce: Support 90hz For Redmi Note 10 Pro `sweet`)
 	panel->panel_initialized = false;
 	panel->power_mode = SDE_MODE_DPMS_OFF;
 
