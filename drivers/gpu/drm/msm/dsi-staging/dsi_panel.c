@@ -6425,21 +6425,12 @@ int dsi_panel_disable(struct dsi_panel *panel)
 	}
 	
 	if (panel->cur_mode->timing.refresh_rate == 90) {
-<<<<<<< HEAD
- 	rc = dsi_panel_tx_cmd_set(panel, DSI_CMD_SET_DISP_BC_90HZ);
- 	if (rc)
- 		pr_err("[%s] failed to send DSI_CMD_SET_DISP_BC_90HZ cmd, rc=%d\n",
- 					panel->name, rc);
- 	}
- 	
-=======
   	rc = dsi_panel_tx_cmd_set(panel, DSI_CMD_SET_DISP_BC_90HZ);
   	if (rc)
   		pr_err("[%s] failed to send DSI_CMD_SET_DISP_BC_90HZ cmd, rc=%d\n",
   					panel->name, rc);
   	}
   	
->>>>>>> a512664ad6e3 (Introduce: Support 90hz For Redmi Note 10 Pro `sweet`)
 	panel->panel_initialized = false;
 	panel->power_mode = SDE_MODE_DPMS_OFF;
 
