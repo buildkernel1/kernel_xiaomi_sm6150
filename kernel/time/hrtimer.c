@@ -1099,12 +1099,31 @@ hrtimer_update_softirq_timer(struct hrtimer_cpu_base *cpu_base, bool reprogram)
 {
 	ktime_t expires;
 
+	/*
+	 * Find the next SOFT expiration.
+	 */
+	expires = __hrtimer_get_next_event(cpu_base, HRTIMER_ACTIVE_SOFT);
 
-	if (WARN_ON_ONCE(!timer->function))
+	/*
+	 * reprogramming needs to be triggered, even if the next soft
+	 * hrtimer expires at the same time than the next hard
+	 * hrtimer. cpu_base->softirq_expires_next needs to be updated!
+	 */
+	if (expires == KTIME_MAX)
 		return;
 
-	base = lock_hrtimer_base(timer, &flags);
+	/*
+	 * cpu_base->*next_timer is recomputed by __hrtimer_get_next_event()
+	 * cpu_base->*expires_next is only set by hrtimer_reprogram()
+	 */
+	hrtimer_reprogram(cpu_base->softirq_next_timer, reprogram);
+}
 
+static int __hrtimer_start_range_ns(struct hrtimer *timer, ktime_t tim,
+				    u64 delta_ns, const enum hrtimer_mode mode,
+				    struct hrtimer_clock_base *base)
+{
+	struct hrtimer_clock_base *new_base;
 
 	/* Remove an active timer from the queue: */
 	remove_hrtimer(timer, base, true);
