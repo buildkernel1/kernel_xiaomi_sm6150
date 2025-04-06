@@ -1,6 +1,6 @@
 #
 # Automatically generated file; DO NOT EDIT.
-# Linux/arm64 4.14.336 Kernel Configuration
+# Linux/arm64 4.14.356 Kernel Configuration
 #
 CONFIG_ARM64=y
 CONFIG_64BIT=y
@@ -260,7 +260,7 @@ CONFIG_SLUB_CPU_PARTIAL=y
 CONFIG_SYSTEM_DATA_VERIFICATION=y
 # CONFIG_PROFILING is not set
 CONFIG_TRACEPOINTS=y
-CONFIG_KPROBES=y
+# CONFIG_KPROBES is not set
 CONFIG_KPROBE_EVENTS=y
 CONFIG_JUMP_LABEL=y
 # CONFIG_STATIC_KEYS_SELFTEST is not set

@@ -30,7 +30,7 @@ jobs:
      
     - name: Fetch KernelSU-SuSFS
       run: |
-            curl -LSs "https://raw.githubusercontent.com/buildkernel1/KernelSU/main/kernel/setup.sh" | bash -s main
+            curl -LSs "https://raw.githubusercontent.com/rifsxd/KernelSU-Next/next-susfs/kernel/setup.sh" | bash -s next-susfs-dev
      
            
     - name: Clean previous build
