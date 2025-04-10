@@ -5708,8 +5708,6 @@ int panel_disp_param_send_lock(struct dsi_panel *panel, int param)
 		pr_info("BC 120hz\n");
 		rc = dsi_panel_tx_cmd_set(panel, DSI_CMD_SET_DISP_BC_120HZ);
 
-		break;	
-
 	default:
 		break;
 	}
