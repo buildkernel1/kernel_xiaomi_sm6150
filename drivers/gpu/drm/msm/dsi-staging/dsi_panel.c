@@ -5707,21 +5707,23 @@ int panel_disp_param_send_lock(struct dsi_panel *panel, int param)
 	case DISPPARAM_BC_120HZ:
 		pr_info("BC 120hz\n");
 		rc = dsi_panel_tx_cmd_set(panel, DSI_CMD_SET_DISP_BC_120HZ);
-		break;
+
+		break;	
+
 	default:
 		break;
 	}
     
     temp = param & 0x000F0000;
 
-  	if (temp == DISPPARAM_BC_60HZ) {
-  		pr_info("BC 60hz\n");
-  		rc = dsi_panel_tx_cmd_set(panel, DSI_CMD_SET_DISP_BC_60HZ);
-  	} else if (temp == DISPPARAM_BC_90HZ) {
-  		pr_info("BC 90hz\n");
-  		rc = dsi_panel_tx_cmd_set(panel, DSI_CMD_SET_DISP_BC_90HZ);
-  	} 
-  
+   	if (temp == DISPPARAM_BC_60HZ) {
+   		pr_info("BC 60hz\n");
+   		rc = dsi_panel_tx_cmd_set(panel, DSI_CMD_SET_DISP_BC_60HZ);
+   	} else if (temp == DISPPARAM_BC_90HZ) {
+   		pr_info("BC 90hz\n");
+   		rc = dsi_panel_tx_cmd_set(panel, DSI_CMD_SET_DISP_BC_90HZ);
+   	} 
+   	
 
 	temp = param & 0x00F00000;
 	switch (temp) {
@@ -6425,12 +6427,14 @@ int dsi_panel_disable(struct dsi_panel *panel)
 	}
 	
 	if (panel->cur_mode->timing.refresh_rate == 90) {
-  	rc = dsi_panel_tx_cmd_set(panel, DSI_CMD_SET_DISP_BC_90HZ);
-  	if (rc)
-  		pr_err("[%s] failed to send DSI_CMD_SET_DISP_BC_90HZ cmd, rc=%d\n",
-  					panel->name, rc);
-  	}
-  	
+
+   	rc = dsi_panel_tx_cmd_set(panel, DSI_CMD_SET_DISP_BC_90HZ);
+   	if (rc)
+   		pr_err("[%s] failed to send DSI_CMD_SET_DISP_BC_90HZ cmd, rc=%d\n",
+   					panel->name, rc);
+   	}
+   	
+
 	panel->panel_initialized = false;
 	panel->power_mode = SDE_MODE_DPMS_OFF;
 
