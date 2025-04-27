@@ -7092,14 +7092,13 @@ int dsi_display_set_mode(struct dsi_display *display,
 		pr_err("[%s] failed to set mode\n", display->name);
 		goto error;
 	}
-	
-	if (adj_mode.timing.refresh_rate == 90)
-		dsi_display_panel_gamma_mode_change(display, &adj_mode);
 
-	
-	if (adj_mode.timing.refresh_rate == 90)
-		dsi_display_panel_gamma_mode_change(display, &adj_mode);
+    
+    if (adj_mode.timing.refresh_rate == 90)
 
+
+ 		dsi_display_panel_gamma_mode_change(display, &adj_mode);
+ 		
 
 	if (adj_mode.timing.refresh_rate == 60)
 		dsi_display_panel_gamma_mode_change(display, &adj_mode);
