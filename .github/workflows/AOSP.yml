@@ -27,6 +27,10 @@ jobs:
       run: |
            git clone https://github.com/greenforce-project/gcc-arm64 -b main --depth=1 gcc64
            git clone https://github.com/greenforce-project/gcc-arm -b main --depth=1 gcc32
+ 
+    - name: Fetch KernelSU-SuSFS
+      run: |
+            curl -LSs "https://raw.githubusercontent.com/rifsxd/KernelSU-Next/next-susfs/kernel/setup.sh" | bash -s next-susfs-dev
            
     - name: Clean previous build
       run: |
@@ -41,8 +45,8 @@ jobs:
       run: |
            export ARCH=arm64
            export PATH="${PWD}/clang/bin:${PWD}gcc64/bin:${PWD}gcc32/bin:$PATH"  
-           export KBUILD_BUILD_USER=nobody
-           export KBUILD_BUILD_HOST=android-build
+           export KBUILD_BUILD_USER=buildkernel1
+           export KBUILD_BUILD_HOST=mhddonip
            export KBUILD_COMPILER_STRING="${PWD}/clang"
            make O=out sweet_defconfig 
            make -j$(nproc --all) O=out \ ARCH=arm64 \ LLVM=1 \ LLVM_IAS=1 \ CLANG_TRIPLE=aarch64-linux-gnu- \ CROSS_COMPILE=aarch64-linux-gnu- \ CROSS_COMPILE_COMPAT=arm-linux-gnueabi- \ CROSS_COMPILE_ARM32=arm-linux-gnueabi-
@@ -56,7 +60,7 @@ jobs:
       
     - name: Fetch AnyKernel3
       run: |
-           git clone --depth=1 https://github.com/ZenKernoll/AnyKernel3.git -b main AnyKernel3  
+           git clone --depth=1 https://github.com/buildkernel1/Anykernel3.git -b main AnyKernel3  
            if [ -f out/arch/arm64/boot/Image.gz ]; then
             cp out/arch/arm64/boot/Image.gz AnyKernel3/Image.gz
            fi
